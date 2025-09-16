@@ -1,35 +1,35 @@
-import type React from "react"
-import "./globals.css"
-import { ThemeProvider } from "../components/theme-provider"
-import { AppProvider } from "../src/lib/app-context"
-import { Toaster } from "@/components/ui/toaster"
-import type { Metadata } from "next"
-
-// Add an import for the custom styles at the top of the file
-import "@/styles/custom-scrollbar.css"
+import type { Metadata } from 'next'
+import { GeistSans } from 'geist/font/sans'
+import { GeistMono } from 'geist/font/mono'
+import { Analytics } from '@vercel/analytics/next'
+import './globals.css'
 
 export const metadata: Metadata = {
-  title: "LuxChat - Premium Chatbots",
-  description: "Create stunning AI chatbots with our 21st.dev-inspired Glassmorphic UI.",
-    generator: 'v0.dev'
+  title: 'v0 App',
+  description: 'Created with v0',
+  generator: 'v0.app',
 }
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode
-}) {
+}>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
-      <body className="dark">
-        <ThemeProvider defaultTheme="dark" attribute="class">
-          <AppProvider>
-            {children}
-            <Toaster />
-          </AppProvider>
-        </ThemeProvider>
+    <html lang="en">
+      <head>
+        <style>{`
+html {
+  font-family: ${GeistSans.style.fontFamily};
+  --font-sans: ${GeistSans.variable};
+  --font-mono: ${GeistMono.variable};
+}
+        `}</style>
+      </head>
+      <body>
+        {children}
+        <Analytics />
       </body>
     </html>
   )
 }
-

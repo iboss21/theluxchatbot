@@ -1,6 +1,0 @@
-{
-  "scripts": {
-    "migrate": "ts-node scripts/run-migrations.ts"
-  }
-}
-
